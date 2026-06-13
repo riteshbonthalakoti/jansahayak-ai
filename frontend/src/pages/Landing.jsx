@@ -107,12 +107,10 @@ const GLOBAL_CSS = `
     .hide-mob { display: none !important; }
     .step-row { flex-direction: column !important; gap: 20px !important; }
     .step-conn { display: none !important; }
-    .team-grid { grid-template-columns: 1fr 1fr !important; }
     .hero-pills { justify-content: center !important; }
   }
   @media (max-width: 600px) {
     .feat-grid { grid-template-columns: 1fr !important; }
-    .team-grid { grid-template-columns: 1fr !important; }
     .stats-grid { grid-template-columns: 1fr 1fr !important; }
     .hero-h1 { font-size: 30px !important; }
     .cta-h2 { font-size: 28px !important; }
@@ -227,11 +225,11 @@ function Navbar({ onCTA }) {
       <div style={{ maxWidth: 1160, margin: '0 auto', padding: '0 28px', height: 62, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <img src="/logo.png" alt="JanSahayak AI" style={{ height: 36, width: 'auto', maxWidth: 160, objectFit: 'contain' }} />
         <div style={{ display: 'flex', alignItems: 'center', gap: 4 }} className="hide-mob">
-          {['#video', '#features', '#schemes', '#team'].map((href, i) => (
+          {['#video', '#features', '#schemes'].map((href, i) => (
             <a key={i} href={href} style={{ color: C.gray600, textDecoration: 'none', fontSize: 14, fontWeight: 500, padding: '6px 14px', borderRadius: 8, transition: 'color 0.2s, background 0.2s' }}
               onMouseEnter={e => { e.target.style.color = C.orange; e.target.style.background = '#FFF0E6' }}
               onMouseLeave={e => { e.target.style.color = C.gray600; e.target.style.background = 'transparent' }}>
-              {['Demo', 'Features', 'Schemes', 'Team'][i]}
+              {['Demo', 'Features', 'Schemes'][i]}
             </a>
           ))}
           <button onClick={onCTA} className="btn-primary" style={{
@@ -663,57 +661,6 @@ function AgenticLoop() {
   )
 }
 
-// ─── TEAM ─────────────────────────────────────────────────────────────────────
-function Team() {
-  const members = [
-    { name: 'Ritesh', role: 'Founder & Full-Stack', org: 'Gratian Technologies', avatar: 'R', color: C.orange, badge: '🚀', desc: 'Building accessible AI for Bharat. Backend, AI agent, and infrastructure.' },
-    { name: 'Aditya', role: 'AI & Knowledge Base', org: 'Research', avatar: 'A', color: '#4B6FA5', badge: '🧠', desc: 'Scheme eligibility models, knowledge graph curation, and NLP for Hindi.' },
-    { name: 'Priya', role: 'UX & Accessibility', org: 'Product Design', avatar: 'P', color: C.green, badge: '🎨', desc: 'Human-centred design for first-time internet users and rural citizens.' },
-  ]
-  return (
-    <section id="team" style={{ padding: '112px 28px', background: C.cream }}>
-      <div style={{ maxWidth: 1160, margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: 64 }}>
-          <SectionLabel>The Team</SectionLabel>
-          <h2 data-reveal="up" style={{ fontSize: 40, fontWeight: 900, color: C.navy, fontFamily: "'Baloo 2', sans-serif", letterSpacing: -1 }}>
-            Built with Purpose
-          </h2>
-          <p data-reveal="up" style={{ fontSize: 16, color: C.gray500, marginTop: 12, maxWidth: 440, margin: '12px auto 0' }}>
-            A small team building technology that gives 500 million Indians access to welfare they already deserve.
-          </p>
-        </div>
-        <div data-stagger className="team-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 24 }}>
-          {members.map((m, i) => (
-            <div key={i} className="tilt" style={{ background: C.white, border: `1px solid ${C.gray100}`, borderRadius: 22, padding: '36px 28px', textAlign: 'center', boxShadow: '0 2px 16px rgba(0,0,0,0.04)' }}>
-              {/* Avatar */}
-              <div style={{ position: 'relative', display: 'inline-block', marginBottom: 20 }}>
-                <div style={{ width: 76, height: 76, borderRadius: '50%', background: `linear-gradient(135deg, ${m.color}, ${m.color}aa)`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 30, fontWeight: 900, color: '#fff', fontFamily: "'Baloo 2', sans-serif", boxShadow: `0 8px 24px ${m.color}44` }}>
-                  {m.avatar}
-                </div>
-                <div style={{ position: 'absolute', bottom: 0, right: 0, width: 28, height: 28, borderRadius: '50%', background: C.white, border: `2px solid ${C.gray100}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13 }}>
-                  {m.badge}
-                </div>
-              </div>
-              <div style={{ fontSize: 19, fontWeight: 800, color: C.navy, marginBottom: 4 }}>{m.name}</div>
-              <div style={{ fontSize: 14, fontWeight: 600, color: m.color, marginBottom: 4 }}>{m.role}</div>
-              <div style={{ fontSize: 12, color: C.gray400, marginBottom: 16 }}>{m.org}</div>
-              <p style={{ fontSize: 13, color: C.gray500, lineHeight: 1.65 }}>{m.desc}</p>
-            </div>
-          ))}
-        </div>
-        {/* Hackathon badge */}
-        <div data-reveal="up" style={{ marginTop: 52, background: C.white, border: `1px solid ${C.gray100}`, borderRadius: 16, padding: '24px 32px', display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
-          <div style={{ fontSize: 36 }}>🏆</div>
-          <div>
-            <div style={{ fontSize: 14, fontWeight: 800, color: C.navy }}>Built for the people — open source, non-profit intent</div>
-            <div style={{ fontSize: 13, color: C.gray500, marginTop: 4 }}>JanSahayak AI is a mission-driven project aimed at bridging the awareness gap between Indian citizens and welfare schemes they already qualify for.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
 // ─── CTA ──────────────────────────────────────────────────────────────────────
 function CTA({ onCTA }) {
   return (
@@ -771,7 +718,7 @@ function Footer() {
             {[
               { heading: 'Product', links: ['Web Chat', 'WhatsApp Bot', 'Features', 'How It Works'] },
               { heading: 'Schemes', links: ['PM-KISAN', 'Ayushman Bharat', 'PM Awas', 'View All →'] },
-              { heading: 'Project', links: ['GitHub', 'Team', 'Contact'] },
+              { heading: 'Project', links: ['GitHub', 'Contact'] },
             ].map((col, i) => (
               <div key={i}>
                 <div style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 16 }}>{col.heading}</div>
@@ -813,7 +760,6 @@ export default function Landing() {
       <Features />
       <SchemesMarquee />
       <AgenticLoop />
-      <Team />
       <CTA onCTA={goToChat} />
       <Footer />
     </>
